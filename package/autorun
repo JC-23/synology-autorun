@@ -12,7 +12,7 @@ fi
 TRIES=20
 WAIT=0
 # import our config
-source /var/packages/autorun/target/config
+source /var/packages/autorun/home/config
 MOUNTPATH=""
 COUNT=0
 

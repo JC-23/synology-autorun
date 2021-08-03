@@ -1,8 +1,8 @@
 #!/bin/sh
 
-DSMMAJOR=`/bin/get_key_value /etc.defaults/VERSION majorversion`
-if [ $DSMMAJOR -lt 6 ]; then
-	echo "This package can only be used in DSM 6.0 and above!" > $SYNOPKG_TEMP_LOGFILE
+#DSMMAJOR=`/bin/get_key_value /etc.defaults/VERSION majorversion`
+if [ $SYNOPKG_DSM_VERSION_MAJOR -lt 7 ]; then
+	echo "This package can only be used in DSM 7.0 and above!" > $SYNOPKG_TEMP_LOGFILE
 	exit 1
 fi
 

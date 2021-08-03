@@ -1,18 +1,18 @@
 #!/bin/sh
 
 #clean-up temp when required
-if [ -d "/tmp/net.reidemeister.autorun" ]
-then
-    rm -r /tmp/net.reidemeister.autorun
-fi
+#if [ -d "/tmp/net.reidemeister.autorun" ]
+#then
+#    rm -r /tmp/net.reidemeister.autorun
+#fi
 
 # create temp
-mkdir /tmp/net.reidemeister.autorun
+#mkdir /tmp/net.reidemeister.autorun
 
 # save config
-cp /var/packages/autorun/target/config /tmp/net.reidemeister.autorun
+cp $SYNOPKG_PKGHOME/config $SYNOPKG_TEMP_UPGRADE_FOLDER
 
 # save log
-cp /var/packages/autorun/target/log /tmp/net.reidemeister.autorun
+cp $SYNOPKG_PKGVAR/log $SYNOPKG_TEMP_UPGRADE_FOLDER
 
 exit 0

@@ -6,11 +6,11 @@ case $1 in
 		then
 			exit 1
 		else
-			cp /var/packages/autorun/target/rules /usr/lib/udev/rules.d/99-autorun.rules
+			cp $SYNOPKG_PKGDEST/rules /usr/lib/udev/rules.d/99-autorun.rules
 			chmod 400 /usr/lib/udev/rules.d/99-autorun.rules
 			/usr/bin/udevadm control --reload-rules
 		fi
-                echo "`date +%Y-%m-%d` `date +%H:%M:%S`: autorun activated<br/>" >> /var/packages/autorun/target/log
+                echo "`date +%Y-%m-%d` `date +%H:%M:%S`: autorun activated<br/>" >> $SYNOPKG_PKGVAR/log
 		exit 0
 	;;
 	stop)
@@ -20,7 +20,7 @@ case $1 in
 			/usr/bin/udevadm control --reload-rules
 		fi
 
-		echo "`date +%Y-%m-%d` `date +%H:%M:%S`: autorun deactivated<br/>" >> /var/packages/autorun/target/log
+		echo "`date +%Y-%m-%d` `date +%H:%M:%S`: autorun deactivated<br/>" >> $SYNOPKG_PKGVAR/log
 		exit 0
 	;;
 	status)
@@ -32,9 +32,9 @@ case $1 in
 		fi
 	;;
 	log)
-		if [ -e /var/packages/autorun/target/log ]
+		if [ -e $SYNOPKG_PKGVAR/log ]
 		then
-			echo /var/packages/autorun/target/log
+			echo $SYNOPKG_PKGVAR/log
 		fi
 		exit 0
 	;;

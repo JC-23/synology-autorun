@@ -5,9 +5,9 @@ source /var/packages/autorun/target/common
 TMPPATH="/tmp/net.reidemeister.autorun.$1"
 
 # log manually here 
-/bin/echo "`date +%Y-%m-%d` `date +%H:%M:%S`: device '$1' - event received from udev <span style=\"color:gray; font-size:50%;\">" >> /var/packages/autorun/target/log
-env >> /var/packages/autorun/target/log
-/bin/echo "</span>" >> /var/packages/autorun/target/log
+/bin/echo "`date +%Y-%m-%d` `date +%H:%M:%S`: device '$1' - event received from udev <span style=\"color:gray; font-size:50%;\">" >> /var/packages/autorun/var/log
+env >> /var/packages/autorun/var/log
+/bin/echo "</span>" >> /var/packages/autorun/var/log
 
 # filter duplicate events for 2 minutes
 if [ "$(/bin/find $TMPPATH -mmin -2)" != "" ]

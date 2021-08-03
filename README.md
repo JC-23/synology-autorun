@@ -2,7 +2,20 @@
 Execute scripts when connecting external drives (USB / eSATA) on a Synology NAS. Script on the external drive needs to be owned by the root user and should be made executable.
 
 ## Install
-Download autorun-1.8.spk from the releases and install via Manual Install in the Synology Package Center.
+Download autorun-1.9.spk from the releases and install via Manual Install in the Synology Package Center.
+As DSM 7.0 prevents packages with root privileges from installing, you have to change it manually after installation. SSH into your NAS and change /var/packages/autorun/conf/privileges to
+
+```
+...
+
+"defaults": {
+    "run-as": "root"
+},
+
+...
+´´´
+
+Afterwards you can start Autorun from Package Center.
 
 ## Script Fingerprint Validation
 Optional: for additional security only known scripts can be allowed to run. Setup as follows. Before installing autorun, make an empty text file, e.g. at /volume1/Admin/Autorun/known_scripts. During installation of autorun, paste the path to this file when asked for the path to 'known_scripts'. Also enable notifications for ease of use. Attach your external drive with your autorun script. You'll get an error (only if you enabled notifications) in the Notifications area in DSM, indicating that the fingerprint for this script can't be found inside your 'known_scripts' file. Copy the fingerprint from the notifications area inside your 'known_scripts' file. Alternatively manually generate a sha256 checksum for your script and paste this fingerprint inside the 'known_scripts' file. One fingerprint per line. Each line must have just the fingerprint and no additional characters (including spaces) in front or behind it. To deny a script from running in the future, remove the hash from 'known_scripts' or put for example a # character in front of the fingerprint.

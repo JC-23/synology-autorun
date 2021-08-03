@@ -1,6 +1,6 @@
 #!/bin/sh
 
-eval $(env | grep "^SYNOPKG_PKGDEST=")
+eval $(env | grep "^SYNOPKG_PKGHOME=")
 eval $(env | grep "^config_script=")
 eval $(env | grep "^known_scripts_path=")
 eval $(env | grep "^config_search=")
@@ -9,36 +9,31 @@ eval $(env | grep "^config_beep=")
 eval $(env | grep "^config_led=")
 eval $(env | grep "^config_notify=")
 
-echo "SCRIPT=$config_script" > "$SYNOPKG_PKGDEST/config"
-echo "KNOWNSCRIPTSFILEPATH=\"$known_scripts_path\"" >> "$SYNOPKG_PKGDEST/config"
-echo "TRIES=$config_search" >> "$SYNOPKG_PKGDEST/config"
-echo "WAIT=$config_wait" >> "$SYNOPKG_PKGDEST/config"
+echo "SCRIPT=$config_script" > "$SYNOPKG_PKGHOME/config"
+echo "KNOWNSCRIPTSFILEPATH=\"$known_scripts_path\"" >> "$SYNOPKG_PKGHOME/config"
+echo "TRIES=$config_search" >> "$SYNOPKG_PKGHOME/config"
+echo "WAIT=$config_wait" >> "$SYNOPKG_PKGHOME/config"
 if [ $config_beep = "true" ]
 then
-	echo "BEEP=1" >> "$SYNOPKG_PKGDEST/config"
+	echo "BEEP=1" >> "$SYNOPKG_PKGHOME/config"
 else
-	echo "BEEP=0" >> "$SYNOPKG_PKGDEST/config"
+	echo "BEEP=0" >> "$SYNOPKG_PKGHOME/config"
 fi
 if [ $config_led = "true" ]
 then
-	echo "LED=1" >> "$SYNOPKG_PKGDEST/config"
+	echo "LED=1" >> "$SYNOPKG_PKGHOME/config"
 else
-	echo "LED=0" >> "$SYNOPKG_PKGDEST/config"
+	echo "LED=0" >> "$SYNOPKG_PKGHOME/config"
 fi
 if [ -z "$config_notify" ]
 then
-	echo "NOTIFY=0" >> "$SYNOPKG_PKGDEST/config"
+	echo "NOTIFY=0" >> "$SYNOPKG_PKGHOME/config"
 else
-	echo "NOTIFY=1" >> "$SYNOPKG_PKGDEST/config"
+	echo "NOTIFY=1" >> "$SYNOPKG_PKGHOME/config"
 fi
-echo "NOTIFYTARGET=$config_notify" >> "$SYNOPKG_PKGDEST/config"
+echo "NOTIFYTARGET=$config_notify" >> "$SYNOPKG_PKGHOME/config"
 
-chmod 700 "$SYNOPKG_PKGDEST/autorun"
-chmod 700 "$SYNOPKG_PKGDEST/common"
-chmod 600 "$SYNOPKG_PKGDEST/config"
-chmod 400 "$SYNOPKG_PKGDEST/rules"
-chmod 700 "$SYNOPKG_PKGDEST/udev"
-chown -R admin.users "$SYNOPKG_PKGDEST"
-echo "`date +%Y-%m-%d` `date +%H:%M:%S`: autorun installed<br/>" >> "${SYNOPKG_PKGDEST}/log"
+echo "`date +%Y-%m-%d` `date +%H:%M:%S`: autorun installed<br/>" >> "$SYNOPKG_PKGVAR/log"
+
 
 exit 0

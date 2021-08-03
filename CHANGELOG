@@ -1,4 +1,6 @@
-﻿1.8
+﻿1.9
+ - changed: requires DSM 7.0
+1.8
  - added: optional feature to verify sha256 fingerprints of scripts before running them
 1.7
  - changed: compatibility with DSM 6.0

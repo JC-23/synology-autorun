@@ -1,23 +1,23 @@
 #!/bin/sh
 
-if [ -d "/tmp/net.reidemeister.autorun" ]
+if [ -d "$SYNOPKG_TEMP_UPGRADE_FOLDER" ]
 then
     # restore config
-    if [ -f "/tmp/net.reidemeister.autorun/config" ]
+    if [ -f "$SYNOPKG_TEMP_UPGRADE_FOLDER/config" ]
     then
-        cp /tmp/net.reidemeister.autorun/config /var/packages/autorun/target/
+        cp $SYNOPKG_TEMP_UPGRADE_FOLDER/config $SYNOPKG_PKGHOME/
     fi
 
     # restore log
-    if [ -f "/tmp/net.reidemeister.autorun/log" ]
+    if [ -f "$SYNOPKG_TEMP_UPGRADE_FOLDER/log" ]
     then
-        cp /tmp/net.reidemeister.autorun/log /var/packages/autorun/target/
+        cp $SYNOPKG_TEMP_UPGRADE_FOLDER/log $SYNOPKG_PKGVAR/
     fi
 
-    echo "`date +%Y-%m-%d` `date +%H:%M:%S`: autorun upgraded<br/>" >> "/var/packages/autorun/target/log"
+    echo "`date +%Y-%m-%d` `date +%H:%M:%S`: autorun upgraded<br/>" >> "$SYNOPKG_PKGVAR/log"
 fi
 
 # clean-up
-rm -r /tmp/net.reidemeister.autorun
+#rm -r /tmp/net.reidemeister.autorun
 
 exit 0
