@@ -13,7 +13,7 @@ As DSM 7.0 prevents packages with root privileges from installing, you have to c
 },
 
 ...
-´´´
+```
 
 Afterwards you can start Autorun from Package Center.
 
